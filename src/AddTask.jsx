@@ -56,7 +56,8 @@ export default function AddTask() {
               Add To-Do
             </Typography>
             <form
-              onSubmit={async () => {
+              onSubmit={async (e) => {
+                e.preventDefault();
                 await addToDo(newTask);
                 handleClose();
               }}
