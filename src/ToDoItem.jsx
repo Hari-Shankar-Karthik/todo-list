@@ -5,11 +5,12 @@ import ListItemText from "@mui/material/ListItemText";
 import Checkbox from "@mui/material/Checkbox";
 import CloseIcon from "@mui/icons-material/Close";
 import IconButton from "@mui/material/IconButton";
+import { deleteToDo, toggleToDo } from "./utils";
 
-export default function ToDoItem({ toDo, toggleTaskDone, removeTask }) {
+export default function ToDoItem({ toDo }) {
   return (
     <ListItem disablePadding>
-      <ListItemButton onClick={() => toggleTaskDone(toDo.id)}>
+      <ListItemButton onClick={async () => await toggleToDo(toDo._id)}>
         <Checkbox
           inputProps={{ "aria-label": "controlled" }}
           checked={toDo.isCompleted}
@@ -26,7 +27,7 @@ export default function ToDoItem({ toDo, toggleTaskDone, removeTask }) {
         />
       </ListItemButton>
       <IconButton
-        onClick={() => removeTask(toDo.id)}
+        onClick={async () => await deleteToDo(toDo._id)}
         sx={{ flex: "0 0 50px" }}
         color="error"
       >

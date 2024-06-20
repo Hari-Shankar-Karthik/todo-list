@@ -10,6 +10,7 @@ import IconButton from "@mui/material/IconButton";
 import Button from "@mui/material/Button";
 import CloseIcon from "@mui/icons-material/Close";
 import CheckIcon from "@mui/icons-material/Check";
+import { addToDo } from "./utils";
 
 const style = {
   position: "absolute",
@@ -22,14 +23,17 @@ const style = {
   p: 4,
 };
 
-export default function AddTask({ handleSubmit }) {
+export default function AddTask() {
   const [open, setOpen] = React.useState(false);
   const [newTask, setNewTask] = React.useState("");
+
   const handleOpen = () => {
     setOpen(true);
     setNewTask("");
   };
+
   const handleClose = () => setOpen(false);
+
   return (
     <>
       <AddTaskButton handleOpen={handleOpen} />
@@ -77,8 +81,8 @@ export default function AddTask({ handleSubmit }) {
               </IconButton>
               <Button
                 color="success"
-                onClick={() => {
-                  handleSubmit(newTask);
+                onClick={async () => {
+                  await addToDo(newTask);
                   handleClose();
                 }}
                 endIcon={<CheckIcon />}
