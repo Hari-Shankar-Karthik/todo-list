@@ -90,10 +90,6 @@ export default function AddTask() {
                 <Button
                   type="submit"
                   color="success"
-                  // onClick={async () => {
-                  //   await addToDo(newTask);
-                  //   handleClose();
-                  // }}
                   endIcon={<CheckIcon />}
                   style={{ marginLeft: "auto" }}
                 />
