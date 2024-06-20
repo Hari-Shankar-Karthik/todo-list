@@ -55,40 +55,49 @@ export default function AddTask() {
             <Typography id="transition-modal-title" variant="h6" component="h2">
               Add To-Do
             </Typography>
-            <TextField
-              label="Task"
-              variant="standard"
-              value={newTask}
-              onChange={(e) => {
-                setNewTask(e.target.value);
-              }}
-            />
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                marginTop: "10px",
+            <form
+              onSubmit={async () => {
+                await addToDo(newTask);
+                handleClose();
               }}
             >
-              <IconButton
-                color="error"
-                aria-label="close"
-                onClick={handleClose}
-                style={{ marginRight: "auto" }}
-              >
-                <CloseIcon />
-              </IconButton>
-              <Button
-                color="success"
-                onClick={async () => {
-                  await addToDo(newTask);
-                  handleClose();
+              <TextField
+                label="Task"
+                variant="standard"
+                value={newTask}
+                onChange={(e) => {
+                  setNewTask(e.target.value);
                 }}
-                endIcon={<CheckIcon />}
-                style={{ marginLeft: "auto" }}
               />
-            </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  marginTop: "10px",
+                }}
+              >
+                <IconButton
+                  type="button"
+                  color="error"
+                  aria-label="close"
+                  onClick={handleClose}
+                  style={{ marginRight: "auto" }}
+                >
+                  <CloseIcon />
+                </IconButton>
+                <Button
+                  type="submit"
+                  color="success"
+                  // onClick={async () => {
+                  //   await addToDo(newTask);
+                  //   handleClose();
+                  // }}
+                  endIcon={<CheckIcon />}
+                  style={{ marginLeft: "auto" }}
+                />
+              </Box>
+            </form>
           </Box>
         </Fade>
       </Modal>
